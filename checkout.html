@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - EronPhone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="payment-styles.css">
+</head>
+
+<body>
+
+    <!-- Container principal da página -->
+    <div class="container">
+        <!-- Cabeçalho com logo -->
+        <header>
+            <div class="logo">
+                <h1>EronPhone</h1>
+            </div>
+        </header>
+
+        <!-- Corpo principal da página -->
+        <main>
+            <div class="checkout-card">
+                <h2>Revise seu pedido</h2>
+
+                <!-- Layout em duas colunas -->
+                <div class="checkout-content">
+                    <!-- Resumo do pedido -->
+                    <section class="order-summary">
+                        <div class="product">
+                            <img id="product-image" src="" alt="Imagem do Produto" class="product-card-image">
+                            <div class="product-info">
+                                <p class="product-name" id="product-name"></p>
+                                <p class="product-description" id="product-description"></p>
+                                <p class="product-price" id="product-price"></p>
+                                <p class="product-image" id="product-image"> </p>
+                                <label for="quantity">Quantidade:</label>
+                                <input type="number" id="quantity" value="1" min="1">
+                            </div>
+                        </div>
+                        <div class="freight">
+                            <label for="cep">Frete:</label>
+                            <input type="text" id="cep" placeholder="Digite seu CEP">
+                        </div>
+                        <div class="subtotal">
+                            <p id="subtotal">Subtotal: R$ 0,00</p>
+                            <p class="total" id="total">Total do Pedido: R$ 0,00</p>
+                        </div>
+                    </section>
+
+                    <!-- Formulário de dados do cliente -->
+                    <section class="customer-details">
+                        <h3>Dados de pagamento</h3>
+                        <form action="#" method="post" class="payment-form">
+                            <label for="nome">Nome Completo</label>
+                            <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+
+                            <label for="endereco">Endereço</label>
+                            <input type="text" id="endereco" name="endereco" placeholder="Seu endereço completo" required>
+
+                            <label for="telefone">Telefone</label>
+                            <input type="text" id="telefone" name="telefone" placeholder="Seu telefone" required>
+
+                            <!-- Formas de pagamento -->
+                            <div class="payment-methods">
+                                <h4>Escolha a forma de pagamento</h4>
+                                <label for="pix">
+                                    <input type="radio" id="pix" name="payment-method" value="pix" checked>
+                                    Pix
+                                </label>
+                                <label for="credito">
+                                    <input type="radio" id="credito" name="payment-method" value="credito">
+                                    Crédito/Débito
+                                </label>
+                                <label for="boleto">
+                                    <input type="radio" id="boleto" name="payment-method" value="boleto">
+                                    Boleto
+                                </label>
+                            </div>
+
+                            <button type="submit" class="pay-btn">Finalizar Compra</button>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Script para carregar os dados do produto -->
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const savedProduct = localStorage.getItem("selectedProduct");
+            const subtotalEl = document.getElementById("subtotal");
+            const totalEl = document.getElementById("total");
+            const quantityEl = document.getElementById("quantity");
+
+            if (savedProduct) {
+                const product = JSON.parse(savedProduct);
+
+                // Preenche informações do produto
+                document.getElementById("product-name").textContent = product.name;
+                document.getElementById("product-description").textContent = product.description;
+                document.getElementById("product-price").textContent =
+                    `R$ ${parseFloat(product.price).toFixed(2).replace(".", ",")}`;
+                
+                // ATRIBUIÇÃO DA IMAGEM CORRIGIDA PARA A TAG IMG
+                const productImageEl = document.getElementById("product-image");
+                productImageEl.src = product.image;
+
+                function updateTotals() {
+                    let qty = parseInt(quantityEl.value) || 1;
+                    let subtotalValue = (qty * product.price).toFixed(2).replace(".", ",");
+                    subtotalEl.textContent = `Subtotal: R$ ${subtotalValue}`;
+                    totalEl.textContent = `Total do Pedido: R$ ${subtotalValue}`;
+                }
+
+                updateTotals();
+                quantityEl.addEventListener("input", updateTotals);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
