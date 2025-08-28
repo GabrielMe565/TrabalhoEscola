@@ -25,7 +25,7 @@
                  data-description="Cor branco - Condição Usado com cuidado - Grade B"
                  data-price="2999.00" 
                  data-image= "iphone13.jpg">
-                <img src="img/iphone13.jpg" alt="iPhone 13">
+                <img src="imagem/tit-nio-branco--1--81w6a4vjzn.webp" alt="iPhone 13">
                 <h3>iPhone 13 128GB</h3>
                 <p>R$ 2.999,00</p>
                 <button class="buy-btn">Comprar</button>
@@ -66,7 +66,7 @@
             name: product.getAttribute("data-name"),
             description: product.getAttribute("data-description"),
             price: parseFloat(product.getAttribute("data-price")),
-            image: "img/" + product.getAttribute("data-image")
+            image: product.querySelector("img").src
         };
 
         // Salva no localStorage
