@@ -6,10 +6,14 @@ body {
 }
 
 header {
-    background: #0d6efd;
-    padding: 15px;
-    text-align: center;
+    background: #ff1e00;
+    padding: 15px 20px;
     color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
 }
 
 h2 {
@@ -42,8 +46,9 @@ h2 {
 
 .product-card img {
     width: 100%;
+    max-width: 200px;
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 8px;
 }
 
@@ -69,4 +74,158 @@ h2 {
 
 .buy-btn:hover {
     background: #0a58ca;
+}
+
+/* Estilos da barra de pesquisa */
+.logo h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    padding: 5px;
+    min-width: 300px;
+    max-width: 400px;
+    flex: 1;
+    margin: 0 20px;
+}
+
+.search-bar {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.search-bar::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 1rem;
+}
+
+.search-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsivo para mobile */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .search-container {
+        min-width: 100%;
+        margin: 10px 0 0 0;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    
+}
+
+.Usuario-parte {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+
+.curtir-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 6px 8px;
+    margin: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrinho-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    margin: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.usuario-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 6px 8px;
+    margin: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.curtir-button:hover,
+.carrinho-button:hover,
+.usuario-button:hover{
+    background: rgba(107, 107, 107, 0.3);
+    transform: scale(1.15);
+}
+
+/* Container para botão + label */
+.button-with-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Labels dos botões */
+.button-label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Estilo para imagens dentro dos botões */
+.curtir-button img,
+.carrinho-button img,
+.usuario-button img {
+    width: 100px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
 }
